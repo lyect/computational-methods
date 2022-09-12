@@ -89,6 +89,7 @@ double binarySearchDecreasingF0(double l, double r, const double &v){
 
 // Binary searching u such that f(u) = v.
 // And u located somewhere on (-inf; r).
+// Function is increasing!
 double lBinarySearchF0(const double &r, const double &v) {
 
 	// trying to find a number where function <= 0
@@ -102,6 +103,7 @@ double lBinarySearchF0(const double &r, const double &v) {
 
 // Binary searching u such that f(u) = v.
 // And u located somewhere on (l; +inf).
+// Function is increasing!
 double rBinarySearchF0(const double &l, const double &v) {
 
 	// trying to find a number where function >= 0
@@ -125,7 +127,7 @@ int main() {
 
 	// Descriminant < 0 => number of roots = 0 => function only increases.
 	// 		OR
-	// Descriminant = 0 => function increases almost everywhere (it has a step).
+	// Descriminant = 0 => function increases almost everywhere (it has a "step").
 	//
 	// So, there is only one root (since function is polynomial, 
 	//  intersection with X axis is guaranteed).
