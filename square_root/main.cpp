@@ -1,6 +1,6 @@
-// ============================
+// ############################
 // Find square root of a number
-// ============================
+// ############################
 
 #include <iostream>
 #include <iomanip>
@@ -106,10 +106,10 @@ int main() {
 		}
 	}
 
-	// Print first method's results.
-
+	// Set precision.
 	std::cout << std::fixed << std::setprecision(PRINT_ERROR_DIGITS);
 
+	// Print first method's results.
 	if (methodDiverges) {
 		std::cout << "Bad start value or function - method does not converge!\n";
 	}
@@ -168,7 +168,7 @@ int main() {
 		}
 	}
 
-	// Print second method's results
+	// Print second method's results.
 	if (methodDiverges) {
 		std::cout << "Bad start value or function - method does not converge!\n";
 	}
