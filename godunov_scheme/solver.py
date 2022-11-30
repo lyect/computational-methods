@@ -51,7 +51,7 @@ def v(x : float) -> float:
 def u(x : float, a : float, t : float) -> float:
 	return v(x - a * t)
 
-def solve(xNodesNumber : int, r : float, a : float) -> list[list[float]]:
+def solve(xNodesNumber : int, r : float, a : float) -> np.ndarray:
 	h = (RIGHT_X_EDGE - LEFT_X_EDGE) / (xNodesNumber - 1)
 	t = r * h / a
 
@@ -70,7 +70,7 @@ def solve(xNodesNumber : int, r : float, a : float) -> list[list[float]]:
 
 	return uApprx
 
-def exact(xNodesNumber : int, r : float, a : float) -> list[list[float]]:
+def exact(xNodesNumber : int, r : float, a : float) -> np.ndarray:
 	h = (RIGHT_X_EDGE - LEFT_X_EDGE) / (xNodesNumber - 1)
 	t = r * h / a
 
