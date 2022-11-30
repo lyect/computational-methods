@@ -51,7 +51,7 @@ def makeGIF(uApprx : np.ndarray, uExact : np.ndarray, GIFFilename: str) -> None:
 	
 	# Close buffers
 	for i in range(uApprx.shape[0]):
-		bytesBuffer[i].close();
+		bytesBuffer[i].close()
 
 # "Shelf" function
 def v(x : float) -> float:
