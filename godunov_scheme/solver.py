@@ -1,3 +1,11 @@
+#################################
+# Realization of Godunov's scheme
+#################################
+
+# This program solves differential equation
+#	du/dt + a * du/dx = 0
+# and makes GIFs with solutions fro different parameters
+
 import matplotlib.pyplot as plt
 from itertools import product
 from PIL import Image
