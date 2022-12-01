@@ -118,9 +118,9 @@ def exact(xNodesNumber : int, r : float, a : float) -> np.ndarray:
 
 def main() -> None:
 	# Parameters for different solutions
-	xNodesNumberValues = [11, 101] # Number of nodes, so number of segments will be one less
-	rValues = [0.25, 0.5, 1, 1.25] # Parameter for approximation
-	aValues = [5]                  # "Speed" of function u(x, t)
+	xNodesNumberValues = [11, 101, 1001] # Number of nodes, so number of segments will be one less
+	rValues = [0.25, 0.5, 1, 1.25]       # Parameter for approximation
+	aValues = [5]                        # "Speed" of function u(x, t)
 
 	# Solve for every combination of parameters
 	for combination in product(xNodesNumberValues, rValues, aValues):
