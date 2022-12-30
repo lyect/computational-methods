@@ -17,97 +17,44 @@ y1 = 0
 
 # GLOBAL VARIABLES
 N = 1000
-h = 1 / (N - 1)
+h = 1 / N
 
-def A(row_index):
-	if row_index == N:
-		return 0
-	return 1
-
-def B(row_index):
-	if row_index == 0:
-		return 0
-	return 1
-
-def C(row_index):
-	if row_index == 0 or row_index == N:
-		return 1
-	return -2
-
-def D(row_index):
-	if row_index == 0:
-		return y0
-	if row_index == N:
-		return y1
-	return -2 * h**2
-
-def getSystem():
-
-	matrix = []
-	vector = []
-
-	for i in range(0, N + 1):
-		matrix.append([0] * (N + 1))
-		vector.append(0)
-
-		if 0 <= i - 1 <= N:
-			matrix[i][i - 1] = A(i)
-		if 0 <= i <= N:
-			matrix[i][i] =	 C(i)
-			vector[i] = D(i)
-		if 0 <= i + 1 <= N:
-			matrix[i][i + 1] = B(i)
-
-	return (matrix, vector)
-
-def TMA(matrix, vector):
+def TMA():
 	alpha = [0] * (N + 1)
 	beta = [0] * (N + 1)
 	x = [0] * (N + 1)
 
-	if (matrix[0][0] == 0):
-		print("Can not solve the system!");
-		return None
+	alpha[0] = 0
+	beta[0] = 0
 
-	alpha[1] = -matrix[0][1] / matrix[0][0]
-	beta[1] = vector[0] / matrix[0][0]
+	for i in range(1, N + 1, 1):
+		alpha[i] = -1 / (-2 + alpha[i - 1])
+		beta[i] = ((-2 * h**2) + (-1) * beta[i - 1]) / (-2 + alpha[i - 1])
 
-	for i in range(2, N + 1):
-		div = matrix[i - 1][i - 2] * alpha[i - 1] + matrix[i - 1][i - 1]
-		if div == 0:
-			print("Can not solve the system!");
-			return None
-
-		alpha[i] = -matrix[i - 1][i] / div
-		beta[i] = (vector[i - 1] - matrix[i - 1][i - 2] * beta[i - 1]) / div
-
-	if matrix[N][N] + matrix[N][N - 1] * alpha[N] == 0:
-		print("Can not solve the system!");
-		return None
-
-	x[N] = (vector[N] - matrix[N][N - 1] * beta[N]) / (matrix[N][N] + matrix[N][N - 1] * alpha[N]);
+	x[N] = 0
 	for i in range(N - 1, -1, -1):
-		x[i] = alpha[i + 1] * x[i + 1] + beta[i + 1]
+		x[i] = alpha[i] * x[i + 1] + beta[i]
 
 	return x
 
 def drawPlot(approx):
 
-	X = np.linspace(0, 1, N + 1)
-	exact = [-x*x+(y1-y0+1)*x+y0 for x in X]
+	X_approx = np.linspace(0, 1, N + 1)
+	X_exact = np.linspace(0, 1, 1001)
 
-	approx_plot = plt.plot(X, approx)
-	exact_plot = plt.plot(X, exact)
+	exact = [-x*x+(y1-y0+1)*x+y0 for x in X_exact]
+
+	approx_plot = plt.plot(X_approx, approx)
+	exact_plot = plt.plot(X_exact, exact)
 
 	plt.legend(["approx", "exact"])
 
-
-	plt.savefig("TMA.png")
+	plt.savefig("TMA_1000.png")
 
 def main():
 
-	matrix, vector = getSystem()
-	X = TMA(matrix, vector)
+	X = TMA()
+	
 	drawPlot(X)
 
 main()
